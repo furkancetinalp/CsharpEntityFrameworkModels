@@ -31,3 +31,6 @@ C:\Users\FC\Desktop\pratikler\bookyedek\WebApi\obj\Debug\net5.0\WebApi.dll
 C:\Users\FC\Desktop\pratikler\bookyedek\WebApi\obj\Debug\net5.0\ref\WebApi.dll
 C:\Users\FC\Desktop\pratikler\bookyedek\WebApi\obj\Debug\net5.0\WebApi.pdb
 C:\Users\FC\Desktop\pratikler\bookyedek\WebApi\obj\Debug\net5.0\WebApi.genruntimeconfig.cache
+C:\Users\FC\Desktop\pratikler\bookyedek\WebApi\bin\Debug\net5.0\AutoMapper.dll
+C:\Users\FC\Desktop\pratikler\bookyedek\WebApi\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\FC\Desktop\pratikler\bookyedek\WebApi\bin\Debug\net5.0\FluentValidation.dll

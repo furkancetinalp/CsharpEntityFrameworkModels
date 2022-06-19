@@ -4,20 +4,25 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.DBOperations;
 using WebApi.Common;
+using AutoMapper;
 
 namespace WebApi.BookOperations.GetBooks{
     public class GetBooksQuery
     {
         private readonly bookyedekDbContext _dbContext;
-        public GetBooksQuery(bookyedekDbContext dbContext)
+        private readonly IMapper _mapper;
+        public GetBooksQuery(bookyedekDbContext dbContext,IMapper mapper)
         {
             _dbContext=dbContext;
+            _mapper=mapper;
 
         }
         public List<BooksViewModel> Handle()
         {
             var bookList = _dbContext.Books.OrderBy(x=> x.Id).ToList<Book>();
-            List<BooksViewModel> vm = new List<BooksViewModel>();
+            List<BooksViewModel> vm =_mapper.Map<List<BooksViewModel>>(bookList);
+
+            /*
             foreach(var book in bookList)
             {
                 vm.Add(new BooksViewModel()
@@ -28,7 +33,7 @@ namespace WebApi.BookOperations.GetBooks{
                     Genre=((GenreEnum)book.GenreId).ToString()
 
                 });
-            }
+            }*/
             return vm;
             
         }

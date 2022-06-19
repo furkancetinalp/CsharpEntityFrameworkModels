@@ -4,16 +4,22 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.DBOperations;
 using WebApi.Common;
+using AutoMapper;
+using FluentValidation;
+using FluentValidation.Results;
+
 namespace WebApi.BookOperations.CreateBook
 {
     public class CreateBookCommand
     {
         public CreateBookModel Model {get;set;}
         private readonly bookyedekDbContext _dbContext;
+        private readonly IMapper _mapper;
 
-        public CreateBookCommand(bookyedekDbContext dbContext)
+        public CreateBookCommand(bookyedekDbContext dbContext,IMapper mapper)
         {
             _dbContext=dbContext;
+            _mapper=mapper;
 
         }
 
@@ -23,11 +29,26 @@ namespace WebApi.BookOperations.CreateBook
             if(book is not null){
                 throw new InvalidOperationException("Kitap zaten mevcuttur!!!");
             }
-            book = new Book();
+            /*
+            BookValidator validator = new BookValidator();
+            ValidationResult result = validator.Validate(Model);
+            if(!result.IsValid)
+            {
+                foreach(var failure in result.Errors)
+                {
+                    Console.WriteLine(failure.PropertyName + " "+failure.ErrorMessage);
+                }
+                throw new InvalidOperationException("Inputs are not correct.");
+
+            }
+            */
+            book = _mapper.Map<Book>(Model);//new Book();
+            
+            /*
             book.Title=Model.Title;
             book.GenreId=Model.GenreId;
             book.PageCount=Model.PageCount;
-            book.PublishDate=Model.PublishDate;
+            book.PublishDate=Model.PublishDate; */
 
             _dbContext.Books.Add(book);
             _dbContext.SaveChanges();
